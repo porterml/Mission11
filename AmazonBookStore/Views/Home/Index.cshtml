@@ -7,13 +7,13 @@
 @model BooksViewModel 
 
 
-<h1 class="text-center">The Amazon Bookstore Project</h1>
+<h1 class="text-center fw-bolder">The Amazon Bookstore Project</h1>
 
 @foreach (Book b in Model.Books)
 {
     <h3 class="container-xl text-center">@b.Title</h3>
 
-    <ul class="container-fluid m-3 text" >
+    <ul class="container-fluid m-3 text border-bottom" >
         <li>Author: @b.Author</li>
         <li>Publisher: @b.Publisher</li>
         <li>Isbn: @b.Isbn</li>
@@ -26,4 +26,4 @@
     <br />
 }
 
-<div page-blah="@Model.PageInfo" page-action="Index" class="btn"></div>
+<div page-blah="@Model.PageInfo" page-action="Index" class="btn-lg"></div>
