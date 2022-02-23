@@ -4,23 +4,26 @@
 @{
 }
 
-@model List<Book> 
+@model BooksViewModel 
 
-<h1>The Amazon Bookstore Project</h1>
 
-@foreach (Book b in Model)
-            {
-                <h3>@b.Title</h3>
+<h1 class="text-center">The Amazon Bookstore Project</h1>
 
-                <ul>
-                    <li>Author: @b.Author</li>
-                    <li>Publisher: @b.Publisher</li>
-                    <li>Isbn: @b.Isbn</li>
-                    <li>Classification: @b.Classification</li>
-                    <li>Category: @b.Category</li>
-                    <li>PageCount: @b.PageCount</li>
-                    <li>Price: @b.Price</li>    
-                </ul>
+@foreach (Book b in Model.Books)
+{
+    <h3 class="container-xl text-center">@b.Title</h3>
 
-                <br />
-            }
+    <ul class="container-fluid m-3 text" >
+        <li>Author: @b.Author</li>
+        <li>Publisher: @b.Publisher</li>
+        <li>Isbn: @b.Isbn</li>
+        <li>Classification: @b.Classification</li>
+        <li>Category: @b.Category</li>
+        <li>PageCount: @b.PageCount</li>
+        <li>Price: @b.Price</li>    
+    </ul>
+
+    <br />
+}
+
+<div page-blah="@Model.PageInfo" page-action="Index" class="btn"></div>
