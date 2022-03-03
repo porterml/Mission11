@@ -1,29 +1,17 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
 }
 
-@model BooksViewModel 
+@model BooksViewModel
 
-
-<h1 class="text-center fw-bolder">The Amazon Bookstore Project</h1>
+@*class="text-center fw-bolder"*@
+<h1>Books List</h1>
 
 @foreach (Book b in Model.Books)
 {
-    <h3 class="container-xl text-center">@b.Title</h3>
-
-    <ul class="container-fluid m-3 text border-bottom" >
-        <li>Author: @b.Author</li>
-        <li>Publisher: @b.Publisher</li>
-        <li>Isbn: @b.Isbn</li>
-        <li>Classification: @b.Classification</li>
-        <li>Category: @b.Category</li>
-        <li>PageCount: @b.PageCount</li>
-        <li>Price: @b.Price</li>    
-    </ul>
-
-    <br />
+    //go to book summary and pass the model as b
+    <partial name="BookSummary" model="b" />
 }
 
-<div page-blah="@Model.PageInfo" page-action="Index" class="btn-lg"></div>
+<div page-blah="@Model.PageInfo" page-action="Index" page-class="btn" 
+     page-class-normal="btn-outline-dark" page-class-selected="btn-primary" 
+     page-classes-enabled="true" class="btn-group pull-right m-1"></div>
