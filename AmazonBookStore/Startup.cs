@@ -50,12 +50,27 @@ namespace AmazonBookStore
 
             app.UseRouting();
 
+            // the endpoint labels and tabbing is not neccessary but done for organizations and clean coding
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name : "categorypage",
+                    pattern : "{bookCategory}/pg.{pageNum}",
+                    defaults : new { Controller = "Home", action = "Index" });
+
+
+                endpoints.MapControllerRoute(
                     name: "Paging",
                     pattern: "pg.{pageNum}",
-                    defaults: new { Controller = "Home", action = "Index" });
+                    defaults: new { Controller = "Home", action = "Index", pageNum = 1 });
+
+                endpoints.MapControllerRoute(
+                    "type",
+                    "{bookCategory}",
+                    new { Controller = "Home", Action = "Index", pageNum = 1});
+
+
+
 
                 endpoints.MapDefaultControllerRoute();
             });
