@@ -13,7 +13,8 @@
         </span>
     </div>
 
-    <ul>        @*class="container-fluid m-3 text border-bottom"   Saved for later reference*@
+    <ul>
+        @*class="container-fluid m-3 text border-bottom"   Saved for later reference*@
         <li>Author: @Model.Author</li>
         <li>Publisher: @Model.Publisher</li>
         <li>Isbn: @Model.Isbn</li>
@@ -22,4 +23,18 @@
         <li>PageCount: @Model.PageCount</li>
     </ul>
 
+
+    <form method="post" asp-page="/Cart">
+
+        @*use teh next two imputs to pass along values to identify books during a session so they can be added to the cart*@
+        <input type="hidden" asp-for="@Model.BookId" />
+        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+
+        <span class="card-text">
+            <button type="submit" class="btn btn-success btn-sm float-end">Add to Cart</button>
+        </span>
+
+    </form>
 </div>
+
+

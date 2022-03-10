@@ -1,0 +1,42 @@
+﻿@page
+@model AmazonBookStore.Pages.CartModel
+@{
+}
+
+
+<h1>Books In Your Cart</h1>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Book</th>
+            <th>Quantity</th>
+            <th>Cost</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(var i in Model.basket.Items)
+            {
+                <tr>
+                    <td>@i.Book.Title</td>
+                    <td>@i.Quantity</td>
+                    <td>25</td>
+                    <td>@(i.Quantity * 25)</td>
+                </tr>
+            }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="3">Total:</td>
+            <td>@Model.basket.CalculateTotal().ToString("c")</td>
+        </tr>
+    </tfoot>    
+</table>
+
+<div>
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Add More Books to Cart</a>
+</div>

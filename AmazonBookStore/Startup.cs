@@ -35,6 +35,11 @@ namespace AmazonBookStore
             });
 
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
+
+            services.AddRazorPages();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +52,7 @@ namespace AmazonBookStore
 
             //cooreesponds to the wwwroot
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             // the endpoint labels and tabbing is not neccessary but done for organizations and clean coding
@@ -73,6 +78,8 @@ namespace AmazonBookStore
 
 
                 endpoints.MapDefaultControllerRoute();
+
+                endpoints.MapRazorPages();
             });
         }
     }
