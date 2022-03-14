@@ -41,7 +41,7 @@ namespace AmazonBookStore.Models
 
         public double CalculateTotal()
         {
-            double sum = Items.Sum(x => x.Quantity * 25);
+            double sum = Items.Sum(x => x.Quantity * x.Book.Price);
 
             return sum;
         }

@@ -17,6 +17,8 @@ namespace AmazonBookStore.Models
 
             SessionBasket basket = session?.GetJson<SessionBasket>("Basket") ?? new SessionBasket();
 
+            basket.Session = session;
+
             return basket;
         }
 
