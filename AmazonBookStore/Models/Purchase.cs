@@ -35,5 +35,8 @@ namespace AmazonBookStore.Models
 
         public bool SubscribeFlag { get; set; }
 
+        [BindNever]
+        public bool PurchasedReceived { get; set; }
+
     }
 }

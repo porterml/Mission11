@@ -109,6 +109,9 @@ namespace AmazonBookStore.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("PurchasedReceived")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("State")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -116,8 +119,9 @@ namespace AmazonBookStore.Migrations
                     b.Property<bool>("SubscribeFlag")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Zip")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Zip")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("PurchaseId");
 
