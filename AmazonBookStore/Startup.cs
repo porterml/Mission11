@@ -2,6 +2,7 @@ using AmazonBookStore.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,6 +35,12 @@ namespace AmazonBookStore
                 options.UseSqlite(Configuration["ConnectionStrings:BooksDBConnection"]);
             });
 
+            services.AddDbContext<AppIdentityDBContext>(options => 
+                options.UseSqlite(Configuration["ConnectionStrings:IdentitiyConnection"]));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDBContext>();
+
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
             services.AddScoped<IPurchaseRepository, EFPurchaseRepository>();
 
@@ -60,6 +67,9 @@ namespace AmazonBookStore
             app.UseStaticFiles();
             app.UseSession();
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             // the endpoint labels and tabbing is not neccessary but done for organizations and clean coding
             app.UseEndpoints(endpoints =>
