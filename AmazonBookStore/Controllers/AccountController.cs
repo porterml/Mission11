@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace AmazonBookStore.Controllers
 {
-    public class AccountContoroller : Controller
+    public class AccountController : Controller
     {
         private UserManager<IdentityUser> userManager;
         private SignInManager<IdentityUser> signIn;
 
-        public AccountContoroller(UserManager<IdentityUser> um, SignInManager<IdentityUser> sim)
+        public AccountController(UserManager<IdentityUser> um, SignInManager<IdentityUser> sim)
         {
             userManager = um;
             signIn = sim;
@@ -30,20 +30,29 @@ namespace AmazonBookStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                IdentityUser user = await userManager.FindByIdAsync(login.Username);
+                IdentityUser user = await userManager.FindByNameAsync(login.Username);
 
                 if (user != null)
                 {
                     await signIn.SignOutAsync();
 
-                    if((await signIn.PasswordSignInAsync(user, login.Password, false, false)).Succeeded)
+                    if ((await signIn.PasswordSignInAsync(user, login.Password, false, false)).Succeeded)
                     {
                         return Redirect(login?.returnURL ?? "/Admin");
                     }
                 }
             }
+
             ModelState.AddModelError("", "Invalid Username or Password");
             return View(login);
+        }
+
+
+        public async Task<RedirectResult> Logout (string returnURL = "/")
+        {
+            await signIn.SignOutAsync();
+
+            return Redirect(returnURL);
         }
     }
 }

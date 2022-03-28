@@ -46,7 +46,6 @@ namespace AmazonBookStore.Controllers
                 return View();
             }
 
-            IdenitySeedData.num = IdenitySeedData.num + 5; 
         }
     }
 }
