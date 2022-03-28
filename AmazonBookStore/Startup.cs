@@ -100,6 +100,8 @@ namespace AmazonBookStore
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
             });
+
+            IdenitySeedData.EnsurePopulated(app);
         }
     }
 }

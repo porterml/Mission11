@@ -39,7 +39,6 @@ namespace AmazonBookStore.Controllers
                     CurrentPage = pageNum
                 }
             };
-
             return View(x);
         }
 
